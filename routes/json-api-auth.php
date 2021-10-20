@@ -10,7 +10,7 @@ use App\Http\Controllers\JsonApiAuth\RegisterController;
 use App\Http\Controllers\JsonApiAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/register', RegisterController::class)->name('json-api-auth.register');
+Route::post('register', RegisterController::class)->name('json-api-auth.register');
 
 Route::post('/login', LoginController::class)->name('json-api-auth.login');
 

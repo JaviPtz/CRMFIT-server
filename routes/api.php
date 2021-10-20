@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\JsonApiAuth\AuthKit;
+use App\Http\Controllers\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 require __DIR__ . '/json-api-auth.php';
+
+
+/* Rutas client */
+Route::apiResource('clients', ClientController::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -41,4 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /* relaciones muchos a muchos  */
+    /* el usuario puede tener muchos clientes */
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class);
+    }
 }
