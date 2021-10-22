@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\clients\storeUserClientsRequest;
 use App\Models\Client;
-
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -15,9 +14,10 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request):JsonResponse
     {
-        $clients = Client::all();
+
+        $clients = Client::where('deleted', false)->get();
         return response()->json([
             'data' => $clients,
             'message' => 'clientes obtenidos con éxito'
@@ -55,10 +55,11 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        //
+
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,8 +79,13 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        //
+        $client->deleted = true;
+        $client->save();
+
+        return response()->json([
+            'message' => 'Cliente eliminado con exito'
+        ], 200);
     }
 }

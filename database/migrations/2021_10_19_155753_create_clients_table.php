@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->string('email')->comment('correo del cliente');
             $table->string('phone')->comment('teléfono del cliente');
             $table->string('address')->comment('dirección del cliente');
+            $table->boolean('deleted')->comment('Eliminado lógico')->default(false);
             $table->timestamps();
         });
     }
